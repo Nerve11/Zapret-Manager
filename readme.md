@@ -128,7 +128,7 @@ sed -i '/#githubusercontent.com/,+2d' /etc/hosts; /etc/init.d/dnsmasq restart 2>
 Подключитесь по **SSH** к роутеру и выполните команду:
 
 ```
-sh <(wget -O - https://raw.githubusercontent.com/StressOzz/Zapret-Manager/main/Zapret-Manager.sh)
+sh <(wget -O - https://github.com/Nerve11/Zapret-Manager/raw/refs/heads/main/Zapret-Manager.sh)
 ```
 или
 ```
