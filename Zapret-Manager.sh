@@ -2,7 +2,7 @@
 # ==========================================
 # Zapret Manager by StressOzz
 # =========================================
-ZAPRET_MANAGER_VERSION="9.81"; STR_VERSION_AUTOINSTALL="v7"
+ZAPRET_MANAGER_VERSION="9.82"; STR_VERSION_AUTOINSTALL="v7"
 OWRTAWG=$(grep '^DISTRIB_RELEASE=' /etc/openwrt_release | cut -d"'" -f2); ARCHAWG="$(grep DISTRIB_ARCH /etc/openwrt_release | cut -d"'" -f2)_$(grep DISTRIB_TARGET /etc/openwrt_release | cut -d"'" -f2 | tr '/' '_')" 
 CRON_CMD="/etc/init.d/mihomo restart"; CONFIGPATH="/etc/magitrickle/state/config.yaml"; PACKAGES_UPDATED=0
 FLOWSEAL_STR_ZIP="https://github.com/Flowseal/zapret-discord-youtube/archive/refs/heads/main.zip"
@@ -111,7 +111,7 @@ get_ver "https://github.com/MagiTrickle/MagiTrickle/releases/latest" "$TMP_MAG_V
 get_ver "https://github.com/remittor/zapret-openwrt/releases/latest" "$TMP_VER" "Zapret" & get_ver "https://github.com/spatiumstas/tg-ws-proxy-go/releases/latest" "$TMP_VER_GO" "TG-WS Proxy GO" & get_ver "https://github.com/xyzmean/splify/releases/latest" "$TMP_VER_SPL" "splify" & wait
 [ -s "$TMP_VER" ] && ZAPRET_VERSION="$(cat "$TMP_VER")"; [ -s "$TMP_VER_POD" ] && PODKOP_LATEST_VER="$(cat "$TMP_VER_POD")"; [ -s "$TMP_VER_GO" ] && GO_VER="$(cat "$TMP_VER_GO")"; [ -s "$TMP_MAG_VER" ] && MT_VERSION="$(cat "$TMP_MAG_VER")"; [ -s "$TMP_VER_SPL" ] && SPL_VER="$(cat "$TMP_VER_SPL")"
 
-echo 'sh <(wget -q -O - https://raw.githubusercontent.com/StressOzz/Zapret-Manager/main/Zapret-Manager.sh)' > /usr/bin/zms; chmod +x /usr/bin/zms
+echo 'sh <(wget -q -O - https://github.com/Nerve11/Zapret-Manager/raw/refs/heads/main/Zapret-Manager.sh)' > /usr/bin/zms; chmod +x /usr/bin/zms
 
 # git="githubusercontent.com"; if ! grep -q "raw.$git" /etc/hosts; then echo -e "\n\033[1;36mДля корректной работы скрипта добавляем домены \033[0mGitHub\033[1;36m в \033[0m/etc/hosts\033[0m"
 # printf "#$git\n185.199.109.133 raw.$git release-assets.$git\n185.199.108.133 private-user-images.$git gist.$git avatars.$git\n" >> /etc/hosts; /etc/init.d/dnsmasq restart >/dev/null 2>&1; fi
@@ -564,7 +564,7 @@ echo -ne "${CYAN}Enter) ${GREEN}Выход в главное меню${NC}\n\n${
 4) toggle_block "$LIBRUSEC";; 5) toggle_block "$AI";; 6) toggle_block "$TWCH";; 7) toggle_block "$TGWeb";; 8) toggle_block "$SPFY";; 9) toggle_block "$SCell";; 10) toggle_block "$GITH_RAW";; 11) toggle_block "$GITH";;
 12) toggle_block "$USoft";; 13) toggle_all;; 14) add_GEO_HOSTS;; 15) echo -e "\n${MAGENTA}Заменяем hosts на Mafioznik hosts${NC}"; wget -qO /etc/hosts https://raw.githubusercontent.com/StressOzz/Zapret-Manager/refs/heads/main/files/hosts_mafioznik.txt >/dev/null 2>&1 || { echo -e "\n${RED}Не удалось скачать файл hosts${NC}\n"; PAUSE; }
 /etc/init.d/dnsmasq restart >/dev/null 2>&1; echo -e "hosts ${GREEN}заменён на ${NC}Mafioznik hosts${GREEN}!${NC}\n"; PAUSE;; 16) echo -e "\n${MAGENTA}Заменяем hosts на Malw.link hosts${NC}"
-wget -qO /etc/hosts https://raw.githubusercontent.com/StressOzz/Zapret-Manager/refs/heads/main/files/hosts_malw.link.txt >/dev/null 2>&1 || { echo -e "\n${RED}Не удалось скачать файл hosts${NC}\n"; PAUSE; }
+wget -qO /etc/hosts https://github.com/ImMALWARE/dns.malw.link/raw/refs/heads/master/hosts >/dev/null 2>&1 || { echo -e "\n${RED}Не удалось скачать файл hosts${NC}\n"; PAUSE; }
 /etc/init.d/dnsmasq restart >/dev/null 2>&1; echo -e "hosts ${GREEN}заменён на ${NC}Malw.link hosts${GREEN}!${NC}\n"; PAUSE;; 17) hosts_reset;; *) break;; esac; done; }
 status_block() { local line; while IFS= read -r line; do [ -z "$line" ] && continue; grep -Fxq "$line" "$HOSTS_FILE" || return 1; done <<EOF
 $(printf '%b\n' "$1")
